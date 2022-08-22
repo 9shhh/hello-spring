@@ -2,14 +2,18 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
-import hello.hellospring.repository.MemoryMemberRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 // 회원 도메인과 리포지토리를 활용한 회원 비즈니스 로직을 정의하는 클래스
 public class MemberService {
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    public MemberService(MemberRepository memberRepository) {
+        // 생성자를 통한 memberRepository Dependency Injection
+        this.memberRepository = memberRepository;
+    }
 
     /**
      * 회원 가입
